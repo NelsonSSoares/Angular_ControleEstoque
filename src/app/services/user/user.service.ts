@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   signupUser(requestData: SignupUserRequest): Observable<SignupUserResponse> {
-    return this.http.post<SignupUserResponse>(`${this.API_URL}/users`, requestData);
+    return this.http.post<SignupUserResponse>(`${this.API_URL}/user`, requestData);
 
   }
 
