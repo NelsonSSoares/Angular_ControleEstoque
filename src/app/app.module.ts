@@ -12,12 +12,14 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { DashboardHomeComponent } from './modules/dashboard/page/dashboard-home/dashboard-home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardHomeComponent
   ],
   imports: [
     BrowserModule,
