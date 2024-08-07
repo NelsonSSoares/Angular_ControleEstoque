@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { MessageService } from 'primeng/api';
 import { AuthRequest } from 'src/app/models/interfaces/user/auth/AuthRequest';
 import { SignupUserRequest } from 'src/app/models/interfaces/user/signup-user-request';
 import { UserService } from 'src/app/services/user/user.service';
@@ -28,7 +29,8 @@ export class HomeComponent {
   constructor(
     private formBuilder: FormBuilder, 
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private messageService: MessageService
   ) { }
 
   onSubmitLoginForm(): void {
@@ -42,10 +44,23 @@ export class HomeComponent {
           this.cookieService.set('USER_INFO', response?.token);
           alert('User authenticated successfully');
           this.loginForm.reset();
+
+          this.messageService.add({
+            severity:'success',
+             summary:'Success',
+             detail:`Welcome ${response?.name}`,
+             life: 2000
+            });
         }
     
       },
       error: (error) => {
+        this.messageService.add({
+          severity:'error',
+           summary:'Error',
+           detail:`Error to Athenticate user`,
+           life: 2000
+          });
         console.error('Error authenticating user: ', error);
       }});
   }
@@ -59,13 +74,25 @@ export class HomeComponent {
       .subscribe({next: (response) => {
         
         if(response){
-          alert('User created successfully');
           this.signupForm.reset();
           this.loginCard = true;
+          
+          this.messageService.add({
+            severity:'success',
+             summary:'Success',
+             detail:`User created successfully ${response?.name}`,
+             life: 2000
+            });
         }
     
       },
       error: (error) => {
+        this.messageService.add({
+          severity:'error',
+           summary:'Error',
+           detail:`Error creating user`,
+           life: 2000
+          });
         console.error('Error creating user: ', error);
       }});
 
