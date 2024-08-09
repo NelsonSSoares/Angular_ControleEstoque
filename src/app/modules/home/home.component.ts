@@ -44,7 +44,6 @@ export class HomeComponent {
         
         if(response){
           this.cookieService.set('USER_INFO', response?.token);
-          alert('User authenticated successfully');
           this.loginForm.reset();
 
           this.router.navigate(['/dashboard']);

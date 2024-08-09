@@ -6,7 +6,7 @@
         ></p-button>
     </div>
 
-    <div class="p-toolbat-grou-center">
+    <div class="p-toolbar-group-center">
         <p-button icon="pi pi-cart-plus" label="Produtos" 
         routerLink="/products"
         styleClass="bg-indigo-800 p-button-secondary"
@@ -29,6 +29,12 @@
         ></p-button>
     </div>
 
-    
-   
+    <div class="p-toolbar-group-end">
+        <p-button 
+        label="Sair"
+        icon="pi pi-sign-out"
+        styleClass="p-button-danger"
+        (onClick)="handleLogout()"
+        ></p-button>
+    </div>
 </p-toolbar>
