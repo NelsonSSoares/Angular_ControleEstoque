@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { DashboardHomeComponent } from './modules/dashboard/page/dashboard-home/dashboard-home.component';
+import { SharedModule } from "./shared/shared.module";
 
 
 @NgModule({
@@ -31,8 +32,9 @@ import { DashboardHomeComponent } from './modules/dashboard/page/dashboard-home/
     CardModule,
     InputTextModule,
     ButtonModule,
-    ToastModule
-  ],
+    ToastModule,
+    SharedModule
+],
   providers: [CookieService, MessageService],
   bootstrap: [AppComponent]
 })

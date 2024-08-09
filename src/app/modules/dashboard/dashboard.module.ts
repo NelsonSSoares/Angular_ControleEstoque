@@ -9,6 +9,9 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { ChartModule } from 'primeng/chart';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 @NgModule({
@@ -22,8 +25,10 @@ import { MessageService } from 'primeng/api';
     SidebarModule,
     ButtonModule,
     ToolbarModule,
-    ToastModule
-
+    ToastModule,
+    ChartModule,
+    //Custom
+    SharedModule
   ],
   providers: [
     CookieService,
