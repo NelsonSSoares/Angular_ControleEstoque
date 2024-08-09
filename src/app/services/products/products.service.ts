@@ -29,6 +29,7 @@ export class ProductsService {
     .pipe(
       map((product) => product
       .filter(data => data.amount > 0))
+      
     );
   }
 }
