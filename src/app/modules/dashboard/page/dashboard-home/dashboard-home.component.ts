@@ -31,6 +31,7 @@ export class DashboardHomeComponent implements OnInit {
           this.productsList = response;
           console.log('PRODUCTS DATA: ',this.productsList);
           this.productDtService.setProductsDatas(this.productsList);
+          
         }
       },
       error: (error)=>{
