@@ -13,6 +13,7 @@ export class DashboardHomeComponent implements OnInit {
 
   public productsList: Array<GetAllProductsResponse> = [];
 
+  
   constructor(
     private productService: ProductsService,
     private messageService: MessageService,
