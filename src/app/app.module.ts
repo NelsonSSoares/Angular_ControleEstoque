@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { DashboardHomeComponent } from './modules/dashboard/page/dashboard-home/dashboard-home.component';
 import { SharedModule } from "./shared/shared.module";
+import { ChartModule } from 'primeng/chart';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { SharedModule } from "./shared/shared.module";
     InputTextModule,
     ButtonModule,
     ToastModule,
-    SharedModule
+    SharedModule,
+    ChartModule
+
 ],
   providers: [CookieService, MessageService],
   bootstrap: [AppComponent]

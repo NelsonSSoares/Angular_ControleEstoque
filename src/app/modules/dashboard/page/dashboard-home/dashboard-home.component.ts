@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChartData, ChartOptions } from 'chart.js';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { GetAllProductsResponse } from 'src/app/models/interfaces/products/response/get-all-products-response';
@@ -13,8 +14,10 @@ import { ProductsDataTransferService } from 'src/app/shared/services/products-da
 export class DashboardHomeComponent implements OnInit, OnDestroy {
 
   public productsList: Array<GetAllProductsResponse> = [];
-
   private destroy$ = new Subject<void>();
+
+  public productChartDatas!: ChartData;
+  public productChartOptions!: ChartOptions;
 
   constructor(
     private productService: ProductsService,
@@ -37,6 +40,7 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
           this.productsList = response;
           console.log('PRODUCTS DATA: ',this.productsList);
           this.productDtService.setProductsDatas(this.productsList);
+          this.setProduductsChartConfig();
           
         }
       },
@@ -51,9 +55,66 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
         });
     }});
   }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
 
+  setProduductsChartConfig(): void{
+
+    if(this.productsList.length > 0){
+
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+    
+    this.productChartDatas = {
+      labels: this.productsList.map((product)=> product?.name),
+      datasets: [
+        {
+          label: 'Quantidade',
+          data: this.productsList.map((product)=> product.amount),
+          backgroundColor: documentStyle.getPropertyValue('--indigo-400'),
+          borderColor: documentStyle.getPropertyValue('--indigo-400'),
+          borderWidth: 1
+        }
+      ]
+    };
+
+    this.productChartOptions = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary,
+            font: {
+              weight: 500,
+          }
+        },
+        grid: {
+          color: surfaceBorder
+        }
+      },
+      y: {
+        ticks: {
+          color: textColorSecondary,
+        },
+        grid: {
+          color: surfaceBorder
+    }
+  }
+}
+    };
+    };
+  }
+ngOnDestroy(): void {
+  throw new Error('Method not implemented.');
+}
 
 }
+  
