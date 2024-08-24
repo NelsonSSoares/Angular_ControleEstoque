@@ -10,6 +10,7 @@ export class ProductsDataTransferService {
   public productsDataEmitter$ = new BehaviorSubject<Array<GetAllProductsResponse> | null >(null)
   public productsDatas: Array<GetAllProductsResponse> = [];
 
+  // Método para setar os dados dos produtos
   setProductsDatas(productsDatas: Array<GetAllProductsResponse>): void{
 
     if(productsDatas){
