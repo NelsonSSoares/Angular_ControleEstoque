@@ -23,7 +23,7 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     private productService: ProductsService,
     private messageService: MessageService,
     private productDtService: ProductsDataTransferService
-  ) { }
+  ) { } 
 
   ngOnInit(): void {
     this.getProductsData();
